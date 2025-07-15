@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🛒 Your Cart</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+    </nav>
+  </header>
+
+  <main>
+    <ul id="cartItems"></ul>
+    <p id="total"></p>
+  </main>
+
+  <script>
+    const items = JSON.parse(localStorage.getItem("cart")) || [];
+    const ul = document.getElementById("cartItems");
+    let total = 0;
+
+    items.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} - ₹${item.price}`;
+      total += item.price;
+      ul.appendChild(li);
+    });
+
+    document.getElementById("total").textContent = `Total: ₹${total}`;
+  </script>
+</body>
+</html>
